@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "samsungx",
+    "description": "laptop samsung book pro",
+    "price": 2500.00
+  },
+  {
+    "id": 2,
+    "name": "lenovo",
+    "description": "laptop lenovo idea pad",
+    "price": 2200.00
+  },
+  {
+    "id": 3,
+    "name": "asus",
+    "description": "laptop asus zenbook duo",
+    "price": 2100.00
+  },
+  {
+    "id": 4,
+    "name": "teros",
+    "description": "monitor teros gaming te-2",
+    "price": 1050.00
+  },
+  {
+    "id": 5,
+    "name": "samsung",
+    "description": "monitor samsung curvo",
+    "price": 1400.00
+  },
+  {
+    "id": 6,
+    "name": "huawei",
+    "description": "monitor huawei gamer",
+    "price": 1350.00
+  },
+  {
+    "id": 7,
+    "name": "seisen",
+    "description": "teclado seisen gamer",
+    "price": 800.00
+  },
+  {
+    "id": 8,
+    "name": "antryx",
+    "description": "teclado antryx gamer",
+    "price": 1000.00
+  },
+  {
+    "id": 9,
+    "name": "logitech",
+    "description": "teclado logitech",
+    "price": 1000.00
+  },
+  {
+    "id": 10,
+    "name": "logitech",
+    "description": "auricular logitech gamer",
+    "price": 800.00
+  },
+  {
+    "id": 11,
+    "name": "hyperx",
+    "description": "auricular hyperx gamer",
+    "price": 680.00
+  },
+  {
+    "id": 12,
+    "name": "redragon",
+    "description": "auricular redragon rgb",
+    "price": 950.00
+  },
+  {
+    "id": 13,
+    "name": "kingston",
+    "description": "memoria kingston rgb",
+    "price": 200.00
+  },
+  {
+    "id": 14,
+    "name": "cooler master",
+    "description": "ventilador cooler master",
+    "price": 200.00
+  },
+  {
+    "id": 15,
+    "name": "lenovo",
+    "description": "mini ventilador lenono",
+    "price": 200.00
+  }
+]

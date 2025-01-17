@@ -1,0 +1,107 @@
+create or replace FUNCTION FNSHORAS_HABILES (strTime1 DATE, strTime2 DATE, habilitarSabados VARCHAR2) RETURN NUMBER IS
+
+    P_daFechaInicia date := to_date(strTime1,'DD/MM/YYYY HH24:MI:SS');
+    P_daFechaFin date := to_date(strTime2,'DD/MM/YYYY HH24:MI:SS');
+    difrence_In_Hours number;
+BEGIN 
+
+      SELECT SUM(TP.HORAS) HORAS INTO difrence_In_Hours
+      FROM (
+      SELECT T1.DATE_,
+        CASE 
+          WHEN T1.day_type_id = 1 THEN 
+          CASE WHEN TRUNC(T1.FINICIAL) = TRUNC(T1.FFINAL) AND TRUNC(T1.FINICIAL) = TRUNC(T1.DATE_) THEN CASE WHEN T1.FINICIAL <= TO_DATE(TO_CHAR(T1.FFINAL,'DD/MM/YYYY')||' '||T1.horaFinDHM) AND T1.FFINAL >= TO_DATE(TO_CHAR(T1.FFINAL,'DD/MM/YYYY')||' '||T1.horaIniDHT) THEN ((T1.FFINAL - T1.FINICIAL)*24)-2
+                                                                                                              ELSE (T1.FFINAL - T1.FINICIAL)*24  END
+                                                                                                              
+          WHEN TRUNC(T1.DATE_) = TRUNC(T1.FINICIAL) THEN CASE WHEN T1.FINICIAL < TO_DATE(TO_CHAR(T1.FINICIAL,'DD/MM/YYYY')||' '||T1.horaFinDHM) THEN ((TO_DATE(TO_CHAR(T1.FINICIAL,'DD/MM/YYYY')||' '||T1.horaFinDHT) - T1.FINICIAL)*24)-2 
+                                                                    WHEN T1.FINICIAL >= TO_DATE(TO_CHAR(T1.FINICIAL,'DD/MM/YYYY')||' '||T1.horaIniDHT) THEN (TO_DATE(TO_CHAR(T1.FINICIAL,'DD/MM/YYYY')||' '||T1.horaFinDHT) - T1.FINICIAL)*24 END
+            
+            WHEN TRUNC(T1.DATE_) = TRUNC(T1.FFINAL) THEN CASE WHEN T1.FFINAL >= TO_DATE(TO_CHAR(T1.FFINAL,'DD/MM/YYYY')||' '||T1.horaIniDHT) THEN ((T1.FFINAL - TO_DATE(TO_CHAR(T1.FFINAL,'DD/MM/YYYY')||' '||T1.horaIniDHM))*24)-2
+                                                              WHEN T1.FFINAL < TO_DATE(TO_CHAR(T1.FFINAL,'DD/MM/YYYY')||' '||T1.horaFinDHM) THEN ((T1.FFINAL - TO_DATE(TO_CHAR(T1.FFINAL,'DD/MM/YYYY')||' '||T1.horaIniDHM) )*24)  END
+            
+            WHEN TRUNC(T1.DATE_) <> TRUNC(T1.FINICIAL) THEN 8 END
+          
+         WHEN T1.day_type_id = 2 THEN 
+          CASE WHEN TRUNC(T1.FINICIAL) = TRUNC(T1.FFINAL)-1 THEN (TO_DATE(TO_CHAR(T1.FINICIAL,'DD/MM/YYYY')||' '||T1.horaFinS) - T1.FINICIAL)*24 
+          WHEN TRUNC(T1.DATE_) = TRUNC(T1.FINICIAL) AND TRUNC(T1.FFINAL) = TRUNC(T1.FINICIAL) THEN (T1.FFINAL - T1.FINICIAL)*24
+          WHEN TRUNC(T1.DATE_) = TRUNC(T1.FINICIAL) THEN (TO_DATE(TO_CHAR(T1.FINICIAL,'DD/MM/YYYY')||' '||T1.horaFinS) - T1.FINICIAL)*24 
+           WHEN TRUNC(T1.DATE_) = TRUNC(T1.FFINAL) THEN (T1.FFINAL - TO_DATE(TO_CHAR(T1.FFINAL,'DD/MM/YYYY')||' '||T1.horaIniS))*24 
+           END
+        END HORAS
+        
+      FROM(
+      SELECT TC.DATE_, TC.day_type_id, horaIniDHM, horaFinDHM, horaIniDHT, horaFinDHT, horaIniS, horaFinS,
+      
+       CASE 
+        WHEN day_type_id = 1 THEN
+            (CASE WHEN TRUNC(TV.daFechaInicia) = TRUNC(TC.DATE_) THEN 
+                      (CASE WHEN TV.daFechaInicia > TO_DATE(TO_CHAR(TV.daFechaInicia,'DD/MM/YYYY')||' '||TV.horaFinDHM, 'DD/MM/YYYY HH24:MI:SS') AND TV.daFechaInicia < TO_DATE(TO_CHAR(TV.daFechaInicia,'DD/MM/YYYY')||' '||TV.horaIniDHT, 'DD/MM/YYYY HH24:MI:SS') THEN TO_DATE(TO_CHAR(TV.daFechaInicia,'DD/MM/YYYY')||' '||TV.horaIniDHT, 'DD/MM/YYYY HH24:MI:SS') 
+                           WHEN TV.daFechaInicia < TO_DATE(TO_CHAR(TV.daFechaInicia,'DD/MM/YYYY')||' '||TV.horaIniDHM, 'DD/MM/YYYY HH24:MI:SS') THEN TO_DATE(TO_CHAR(TV.daFechaInicia,'DD/MM/YYYY')||' '||TV.horaIniDHM, 'DD/MM/YYYY HH24:MI:SS')
+                           WHEN TV.daFechaInicia > TO_DATE(TO_CHAR(TV.daFechaInicia,'DD/MM/YYYY')||' '||TV.horaFinDHT, 'DD/MM/YYYY HH24:MI:SS') THEN TO_DATE(TO_CHAR(TV.daFechaInicia,'DD/MM/YYYY')||' '||TV.horaIniDHM, 'DD/MM/YYYY HH24:MI:SS')+1 
+                           ELSE TV.daFechaInicia 
+                      END)
+                  ELSE TO_DATE(TO_CHAR(TC.DATE_,'DD/MM/YYYY')||' '||TV.horaIniDHM, 'DD/MM/YYYY HH24:MI:SS')
+            END)
+        WHEN day_type_id = 2 THEN
+            (CASE WHEN TRUNC(TV.daFechaInicia) = TRUNC(TC.DATE_) THEN 
+                      (CASE WHEN TV.daFechaInicia > TO_DATE(TO_CHAR(TV.daFechaInicia,'DD/MM/YYYY')||' '||TV.horaFinS, 'DD/MM/YYYY HH24:MI:SS') THEN TO_DATE(TO_CHAR(TV.daFechaInicia,'DD/MM/YYYY')||' '||TV.horaIniS, 'DD/MM/YYYY HH24:MI:SS')+2
+                            WHEN TV.daFechaInicia < TO_DATE(TO_CHAR(TV.daFechaInicia,'DD/MM/YYYY')||' '||TV.horaIniS, 'DD/MM/YYYY HH24:MI:SS') THEN TO_DATE(TO_CHAR(TV.daFechaInicia,'DD/MM/YYYY')||' '||TV.horaIniS, 'DD/MM/YYYY HH24:MI:SS')
+                            ELSE TV.daFechaInicia 
+                      END)
+                  ELSE TO_DATE(TO_CHAR(TC.DATE_,'DD/MM/YYYY')||' '||TV.horaIniDHM, 'DD/MM/YYYY HH24:MI:SS')
+            END)      
+      END FINICIAL,
+      CASE
+        WHEN day_type_id = 1 THEN
+            (CASE WHEN TRUNC(TV.daFechaFin) = TRUNC(TC.DATE_) THEN 
+                      (CASE WHEN TV.daFechaFin > TO_DATE(TO_CHAR(TV.daFechaFin,'DD/MM/YYYY')||' '||TV.horaFinDHM, 'DD/MM/YYYY HH24:MI:SS') AND TV.daFechaFin < TO_DATE(TO_CHAR(TV.daFechaFin,'DD/MM/YYYY')||' '||TV.horaIniDHT, 'DD/MM/YYYY HH24:MI:SS') THEN TO_DATE(TO_CHAR(TV.daFechaFin,'DD/MM/YYYY')||' '||TV.horaFinDHM, 'DD/MM/YYYY HH24:MI:SS') 
+                           WHEN TV.daFechaFin < TO_DATE(TO_CHAR(TV.daFechaFin,'DD/MM/YYYY')||' '||TV.horaIniDHM, 'DD/MM/YYYY HH24:MI:SS') THEN TO_DATE(TO_CHAR(TV.daFechaFin,'DD/MM/YYYY')||' '||TV.horaFinDHT, 'DD/MM/YYYY HH24:MI:SS')-1
+                           WHEN TV.daFechaFin > TO_DATE(TO_CHAR(TV.daFechaFin,'DD/MM/YYYY')||' '||TV.horaFinDHT, 'DD/MM/YYYY HH24:MI:SS') THEN TO_DATE(TO_CHAR(TV.daFechaFin,'DD/MM/YYYY')||' '||TV.horaFinDHT, 'DD/MM/YYYY HH24:MI:SS') 
+                           ELSE TV.daFechaFin 
+                      END) 
+                  ELSE TO_DATE(TO_CHAR(TC.DATE_,'DD/MM/YYYY')||' '||TV.horaFinDHT, 'DD/MM/YYYY HH24:MI:SS')
+            END)
+        WHEN day_type_id = 2 THEN
+            (CASE WHEN TRUNC(TV.daFechaFin) = TRUNC(TC.DATE_) THEN 
+                      (CASE WHEN TV.daFechaFin > TO_DATE(TO_CHAR(TV.daFechaFin,'DD/MM/YYYY')||' '||TV.horaFinS, 'DD/MM/YYYY HH24:MI:SS') THEN TO_DATE(TO_CHAR(TV.daFechaFin,'DD/MM/YYYY')||' '||TV.horaFinS, 'DD/MM/YYYY HH24:MI:SS')
+                            WHEN TV.daFechaFin < TO_DATE(TO_CHAR(TV.daFechaFin,'DD/MM/YYYY')||' '||TV.horaIniS, 'DD/MM/YYYY HH24:MI:SS') THEN TO_DATE(TO_CHAR(TV.daFechaFin,'DD/MM/YYYY')||' '||TV.horaFinDHT, 'DD/MM/YYYY HH24:MI:SS')-1
+                            ELSE TV.daFechaFin 
+                      END)
+                  ELSE TO_DATE(TO_CHAR(TC.DATE_,'DD/MM/YYYY')||' '||TV.horaFinS, 'DD/MM/YYYY HH24:MI:SS')
+            END)
+        END FFINAL    
+      FROM
+      (select
+            DATE_, 
+            1 COD,
+            day_type_id     
+      from ge_calendar  
+      ORDER BY DATE_ ASC
+      )TC,
+      (SELECT 1 COD,
+              P_daFechaInicia daFechaInicia,
+              P_daFechaFin daFechaFin,
+               '08:00:00' horaIniDHM,
+               '12:00:00' horaFinDHM,
+               '14:00:00' horaIniDHT,
+               '18:00:00' horaFinDHT,
+               '08:00:00' horaIniS,
+               '12:00:00' horaFinS,
+               habilitarSabados SABADO
+              FROM DUAL
+      ) TV
+      
+      WHERE TC.COD = TV.COD
+      AND TC.day_type_id IN (SELECT T.TIPO_DIA FROM (SELECT 1 TIPO_DIA FROM DUAL UNION SELECT 2 TIPO_DIA FROM DUAL)T
+                            WHERE (TV.SABADO = 'S' AND T.TIPO_DIA IN (1,2)) OR (TV.SABADO = 'N' AND T.TIPO_DIA IN (1)))
+      AND TC.DATE_ BETWEEN TO_DATE(TO_CHAR(TV.daFechaInicia,'DD/MM/YYYY')||' 00:00:00', 'DD/MM/YYYY HH24:MI:SS')
+                    AND TO_DATE(TO_CHAR(TV.daFechaFin,'DD/MM/YYYY')||' 23:59:59', 'DD/MM/YYYY HH24:MI:SS')
+      )T1
+      )TP;
+
+
+    --DBMS_OUTPUT.PUT_LINE('N° HORAS '||difrence_In_Hours); 
+
+    RETURN difrence_In_Hours;
+    
+END FNSHORAS_HABILES;

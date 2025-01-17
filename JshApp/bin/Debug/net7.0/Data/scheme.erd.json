@@ -1,0 +1,99 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dineug/erd-editor/main/json-schema/schema.json",
+  "version": "3.0.0",
+  "settings": {
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": 0,
+    "scrollLeft": 0,
+    "zoomLevel": 1,
+    "show": 431,
+    "database": 4,
+    "databaseName": "DBREACT_VENTA",
+    "canvasType": "ERD",
+    "language": 1,
+    "tableNameCase": 4,
+    "columnNameCase": 2,
+    "bracketType": 1,
+    "relationshipDataTypeSync": true,
+    "relationshipOptimization": false,
+    "columnOrder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "maxWidthComment": -1,
+    "ignoreSaveSettings": 0
+  },
+  "doc": {
+    "tableIds": [],
+    "relationshipIds": [],
+    "indexIds": [],
+    "memoIds": []
+  },
+  "collections": {
+    "tableEntities": {
+      "OAgj5Gd93nkHw5REv9JcN": {
+        "id": "OAgj5Gd93nkHw5REv9JcN",
+        "name": "dbo]",
+        "comment": "",
+        "columnIds": [
+          "eF9Ir1kU6_CsSovnlzCvP"
+        ],
+        "seqColumnIds": [
+          "eF9Ir1kU6_CsSovnlzCvP"
+        ],
+        "ui": {
+          "x": 50,
+          "y": 50,
+          "zIndex": 2,
+          "widthName": 60,
+          "widthComment": 60,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1722769175511,
+          "createAt": 1722769175511
+        }
+      }
+    },
+    "tableColumnEntities": {
+      "eF9Ir1kU6_CsSovnlzCvP": {
+        "id": "eF9Ir1kU6_CsSovnlzCvP",
+        "tableId": "OAgj5Gd93nkHw5REv9JcN",
+        "name": "idRol]",
+        "comment": "",
+        "dataType": "",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1722769175511,
+          "createAt": 1722769175511
+        }
+      }
+    },
+    "relationshipEntities": {},
+    "indexEntities": {},
+    "indexColumnEntities": {},
+    "memoEntities": {}
+  },
+  "lww": {
+    "OAgj5Gd93nkHw5REv9JcN": [
+      "tableEntities",
+      -1,
+      1722769188556,
+      {}
+    ]
+  }
+}
