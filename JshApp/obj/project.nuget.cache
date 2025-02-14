@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZvAQpe0jCWc=",
+  "dgSpecHash": "uve/lSZtU7k=",
   "success": true,
-  "projectFilePath": "/Users/joshglenbritoavila/Projects/JshApp/JshglenApp.csproj",
+  "projectFilePath": "/Users/joshglenbritoavila/Projects/JSHPortfolio/JshApp/JshglenApp.csproj",
   "expectedPackageFiles": [
     "/Users/joshglenbritoavila/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/Users/joshglenbritoavila/.nuget/packages/azure.identity/1.11.3/azure.identity.1.11.3.nupkg.sha512",

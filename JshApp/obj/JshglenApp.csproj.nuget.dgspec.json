@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/joshglenbritoavila/Projects/JshApp/JshglenApp.csproj": {}
+    "/Users/joshglenbritoavila/Projects/JSHPortfolio/JshApp/JshglenApp.csproj": {}
   },
   "projects": {
-    "/Users/joshglenbritoavila/Projects/JshApp/JshglenApp.csproj": {
+    "/Users/joshglenbritoavila/Projects/JSHPortfolio/JshApp/JshglenApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/joshglenbritoavila/Projects/JshApp/JshglenApp.csproj",
+        "projectUniqueName": "/Users/joshglenbritoavila/Projects/JSHPortfolio/JshApp/JshglenApp.csproj",
         "projectName": "JshglenApp",
-        "projectPath": "/Users/joshglenbritoavila/Projects/JshApp/JshglenApp.csproj",
+        "projectPath": "/Users/joshglenbritoavila/Projects/JSHPortfolio/JshApp/JshglenApp.csproj",
         "packagesPath": "/Users/joshglenbritoavila/.nuget/packages/",
-        "outputPath": "/Users/joshglenbritoavila/Projects/JshApp/obj/",
+        "outputPath": "/Users/joshglenbritoavila/Projects/JSHPortfolio/JshApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/joshglenbritoavila/.nuget/NuGet/NuGet.Config"

@@ -26,6 +26,32 @@
 }
 
 
+.language-select {
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  font-family: 'Arial', sans-serif;
+  transition: all 0.3s ease;
+  width: 150px; /* Ajusta el tamaño */
+}
+
+.language-select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.language-select option {
+  padding: 10px;
+  background-color: white;
+  color: #333;
+}
+
+.language-select:hover {
+  border-color: #007bff;
+}
 
 
 /*a.navbar-brand {

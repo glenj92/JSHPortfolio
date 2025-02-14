@@ -2,7 +2,7 @@
 "SpaProxyServer": {
 "ServerUrl": "http://localhost:44432",
 "LaunchCommand": "npm start",
-"WorkingDirectory": "/Users/joshglenbritoavila/Projects/JshApp/ClientApp/",
+"WorkingDirectory": "/Users/joshglenbritoavila/Projects/JSHPortfolio/JshApp/ClientApp/",
 "MaxTimeoutInSeconds": "120"
 }
 }

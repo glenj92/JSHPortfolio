@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JshglenApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0df33a175548a71ff3bab15a823a6d1af04a8c57")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c9992259e19d82843f0aecf26acd94d865c0620b")]
 [assembly: System.Reflection.AssemblyProductAttribute("JshglenApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JshglenApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

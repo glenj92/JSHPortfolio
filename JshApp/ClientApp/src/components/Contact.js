@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import profilePic from "./images/undraw/JProtfolio8.jpg";
+import { ReactComponent as PhoneLogo } from './images/undraw/uil--phone.svg';
+import { ReactComponent as EmaildFile } from './images/undraw/uil--envelope.svg';
 
 
 export class Contact extends Component {
@@ -25,16 +27,14 @@ export class Contact extends Component {
                                 </h1>
                                 <div className="custom-btn-group mt-4">
                                     <a
-                                        href="#contact"
+                                        href="https://wa.me/573053062521" target="_blank"
                                         className="btn call custom-btn custom-btn-bg custom-btn-link"
                                     >
-                                        <i className="uil uil-file-alt" /> Call +61 406 148 849
+                                        <PhoneLogo /> Call - WhatsApp  +57 305 306 2521
                                     </a>
+                                    {" "}
                                     <a href="#contact" className="btn mr-lg-2 custom-btn">
-                                        <i className="uil uil-file-alt" /> josh.glen.92@gmail.com
-                                    </a>
-                                    <a href="https://www.linkedin.com/in/josh-brito-79b975182/" target="_blank" className="btn mr-lg-2 custom-btn">
-                                        <i className="uil uil-file-alt" /> @josh-brito
+                                        <i className="email-logo" /> <EmaildFile /> josh.glen.92@gmail.com
                                     </a>
                                 </div>
                             </div>
